@@ -7,59 +7,78 @@ void main() {
   // num2 = double.parse(stdin.readLineSync()!);
 
   String operacao = "";
+  List<String> operacoes = <String>["+", "-", "/", "*"];
+  String? entrada = "";
   // operacao = stdin.readLineSync()!;
   // print(num1 + num2);
 
-  void soma(){
+  void soma() {
     print("Soma = ${num1 + num2}");
   }
 
-  void subtracao(){
+  void subtracao() {
     print(num1 - num2);
   }
 
-  void divisao(){
+  void divisao() {
     print(num1 / num2);
   }
 
-  void multiplicacao(){
+  void multiplicacao() {
     print(num1 * num2);
   }
 
-  void calcular(){
-    switch (operacao){
-        case "+": soma();
-        case "-": subtracao();
-        case "*": multiplicacao();
-        case "/": divisao();
+  void calcular() {
+    switch (operacao) {
+      case "+":
+        soma();
+      case "-":
+        subtracao();
+      case "*":
+        multiplicacao();
+      case "/":
+        divisao();
         break;
     }
   }
 
-  print("Digite o primeiro valor: ");
-  String? entrada = stdin.readLineSync();
-  if (entrada != null){
-    if (entrada != ""){
-      num1 = double.parse(entrada);
+  void getOperacao() {
+    print("Digite uma operação: ${operacoes.toString()}");
+    entrada = stdin.readLineSync();
+    if (entrada != null) {
+      if (operacoes.contains(entrada)){
+        operacao = entrada!;
+      } else {
+        print("Operação inválida!");
+        getOperacao();
+      }
     }
   }
 
-  print("Digite uma operação: ");
+  print("Digite o primeiro valor: ");
   entrada = stdin.readLineSync();
-  if (entrada != null){
-    operacao = entrada;
+  if (entrada != null) {
+    if (entrada != "") {
+      num1 = double.parse(entrada!);
+    }
   }
-  
+
+  // print("Digite uma operação: ");
+  // entrada = stdin.readLineSync();
+  // if (entrada != null){
+  //   operacao = entrada;
+  // }
+
+ getOperacao();
+
   print("Digite o segundo valor: ");
   entrada = stdin.readLineSync();
-  if (entrada != null){
-    if (entrada != ""){
-      num2 = double.parse(entrada);
+  if (entrada != null) {
+    if (entrada != "") {
+      num2 = double.parse(entrada!);
     }
   }
-
   
-
   // if (operacao == "+"){
   //   soma();
   // } else if (operacao == "-"){
@@ -75,7 +94,4 @@ void main() {
   print("O resultado da operação é: ");
 
   calcular();
-
 }
-
-
